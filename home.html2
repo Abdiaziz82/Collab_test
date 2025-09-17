@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Home Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg1: radial-gradient(1200px 600px at 10% -10%, #e6f3ff 0%, transparent 60%);
+      --bg2: radial-gradient(800px 400px at 110% 10%, #f3f4f6 0%, transparent 60%);
+      --text: #0f172a;
+      --muted: #64748b;
+      --blue: #2563eb;
+      --cyan: #0ea5e9;
+      --border: #e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{
+      min-height:100vh; margin:0; padding:20px; color:var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg1), var(--bg2);
+    }
+    .page{max-width:1100px; margin:0 auto}
+    .header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 18px; background:#fff; border-radius:16px;
+      box-shadow:0 6px 24px rgba(15,23,42,.06); margin-bottom:18px;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{display:inline-flex; align-items:center; gap:8px; font-size:16px;
+      padding:8px 10px; border-radius:14px; background:#eef2ff; color:#1e293b; border:1px solid var(--border)}
+    .logo-dot{width:12px; height:12px; border-radius:50%; background:#6366f1; box-shadow:0 0 0 4px rgba(99,102,241,.15)}
+    h1{margin:0; font-size:22px; font-weight:800; letter-spacing:.2px}
+    .subtitle{margin:2px 0 0; font-size:13px; color:var(--muted)}
+    .clock{display:flex; flex-direction:column; align-items:flex-end; font-size:14px}
+    .clock small{font-size:12px; color:var(--muted)}
+    .hero{
+      display:grid; grid-template-columns:1.2fr 1fr; gap:16px; align-items:center;
+      background:linear-gradient(180deg,#fff,#f8fafc); border:1px solid var(--border);
+      border-radius:16px; padding:18px; margin-bottom:18px;
+    }
+    .hero h2{margin:0; font-size:28px; font-weight:800; letter-spacing:.3px}
+    .hero p{margin-top:8px; color:#475569; line-height:1.6}
+    .accent{color:var(--blue)}
+    .row{display:flex; gap:12px; align-items:stretch; flex-wrap:wrap; margin-top:16px}
+    label.label{display:flex; flex-direction:column; font-size:14px; gap:6px}
+    input.input{
+      padding:10px 12px; border-radius:10px; border:1px solid var(--border); outline:none; font-size:14px;
+    }
+    .counter{
+      border:1px solid var(--border); border-radius:12px; padding:12px; min-width:220px; background:#fff;
+    }
+    .counter .val{font-weight:700}
+    .btn-row{display:flex; gap:8px; margin-top:8px}
+    button.btn{
+      padding:8px 12px; border-radius:10px; border:1px solid var(--cyan); background:var(--cyan);
+      color:#fff; cursor:pointer; font-weight:700;
+    }
+    button.btn-alt{
+      padding:8px 12px; border-radius:10px; border:1px solid var(--border); background:#fff; cursor:pointer; font-weight:700;
+    }
+    .hero img{
+      width:100%; height:320px; object-fit:cover; border-radius:14px; border:1px solid var(--border);
+      box-shadow:0 10px 24px rgba(2,6,23,.08);
+    }
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+    .card{
+      background:#fff; border:1px solid var(--border); border-radius:14px; padding:16px;
+      box-shadow:0 6px 24px rgba(15,23,42,.05);
+    }
+    .card h3{margin:0 0 8px; font-size:18px; font-weight:800}
+    .list{padding-left:18px; margin:0}
+    .list li{margin-bottom:8px; line-height:1.5; color:#1f2937}
+    .todo-list{list-style:none; padding:0; margin:0; display:grid; gap:8px}
+    .todo-item{padding:8px 10px; border-radius:10px; border:1px solid var(--border); background:#fbfdff}
+    .todo-label{display:flex; align-items:center}
+    .footer{
+      margin-top:18px; display:flex; align-items:center; justify-content:space-between; font-size:13px; color:var(--muted)
+    }
+    code.k{background:#0f172a; color:#fff; padding:2px 6px; border-radius:6px}
+    @media (max-width: 840px){ .hero{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo">
+          <span class="logo-dot"></span><span style="font-weight:800">RT</span>
+        </div>
+        <div>
+          <h1>Home Test</h1>
+          <p class="subtitle">A clean starter to verify your setup</p>
+        </div>
+      </div>
+      <div class="clock">
+        <strong id="clock-time">--:--:--</strong>
+        <small id="clock-date">---</small>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h2>Hello, <span class="accent" id="hello-name">Friend</span> 👋</h2>
+        <p>
+          If you can see this page, vanilla JS is working. Try editing the fields
+          and clicking the buttons to test interactivity.
+        </p>
+
+        <div class="row">
+          <label class="label">Your name:
+            <input id="name-input" class="input" placeholder="Type your name" />
+          </label>
+
+          <div class="counter">
+            <span class="val">Counter: <span id="counter-val">0</span></span>
+            <div class="btn-row">
+              <button class="btn" id="btn-dec">−</button>
+              <button class="btn-alt" id="btn-reset">Reset</button>
+              <button class="btn" id="btn-inc">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <img id="hero-img" alt="Decorative" src="https://picsum.photos/seed/react-0/520/320" />
+    </section>
+
+    <!-- Content Grid -->
+    <main class="grid">
+      <div class="card">
+        <h3>Quick Start</h3>
+        <ul class="list">
+          <li>npm install</li>
+          <li>npm run dev</li>
+          <li>Open http://localhost:5173 (Vite) or http://localhost:3000 (CRA)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Project Checks</h3>
+        <ul class="list">
+          <li>ESLint prints no errors</li>
+          <li>Hot reload updates instantly</li>
+          <li>Console is clean (F12)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Todo (Local State)</h3>
+        <ul id="todo-list" class="todo-list"></ul>
+
+        <form id="todo-form" style="display:flex; gap:8px; margin-top:12px">
+          <input name="todo" id="todo-input" placeholder="Add a task..." class="input" style="flex:1" />
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Made with ❤️ Vanilla JS</span>
+      <span style="opacity:.7">Edit <code class="k">index.html</code> to customize</span>
+    </footer>
+  </div>
+
+  <script>
+    // ----- State -----
+    let counter = 0;
+    let name = "Friend";
+    let todos = [
+      { id: 1, text: "Open project in VS Code", done: true },
+      { id: 2, text: "Run dev server", done: false },
+      { id: 3, text: "Build first component", done: false },
+    ];
+
+    // ----- Elements -----
+    const timeEl = document.getElementById("clock-time");
+    const dateEl = document.getElementById("clock-date");
+    const nameSpan = document.getElementById("hello-name");
+    const nameInput = document.getElementById("name-input");
+    const counterVal = document.getElementById("counter-val");
+    const btnInc = document.getElementById("btn-inc");
+    const btnDec = document.getElementById("btn-dec");
+    const btnReset = document.getElementById("btn-reset");
+    const heroImg = document.getElementById("hero-img");
+    const todoList = document.getElementById("todo-list");
+    const todoForm = document.getElementById("todo-form");
+    const todoInput = document.getElementById("todo-input");
+
+    // ----- Clock -----
+    function tick(){
+      const now = new Date();
+      timeEl.textContent = now.toLocaleTimeString();
+      dateEl.textContent = now.toDateString();
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ----- Name -----
+    nameInput.value = name;
+    nameInput.addEventListener("input", e => {
+      name = e.target.value || "Friend";
+      nameSpan.textContent = name;
+    });
+
+    // ----- Counter -----
+    function renderCounter(){
+      counterVal.textContent = counter;
+      heroImg.src = `https://picsum.photos/seed/react-${counter}/520/320`;
+    }
+    btnInc.addEventListener("click", () => { counter++; renderCounter(); });
+    btnDec.addEventListener("click", () => { counter--; renderCounter(); });
+    btnReset.addEventListener("click", () => { counter = 0; renderCounter(); });
+    renderCounter();
+
+    // ----- Todos -----
+    function renderTodos(){
+      todoList.innerHTML = "";
+      todos.forEach(t => {
+        const li = document.createElement("li");
+        li.className = "todo-item";
+        const label = document.createElement("label");
+        label.className = "todo-label";
+
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = t.done;
+        cb.addEventListener("change", () => {
+          t.done = !t.done;
+          text.style.textDecoration = t.done ? "line-through" : "none";
+          text.style.color = t.done ? "#6b7280" : "#111827";
+        });
+
+        const text = document.createElement("span");
+        text.style.marginLeft = "8px";
+        text.style.textDecoration = t.done ? "line-through" : "none";
+        text.style.color = t.done ? "#6b7280" : "#111827";
+        text.textContent = t.text;
+
+        label.appendChild(cb);
+        label.appendChild(text);
+        li.appendChild(label);
+        todoList.appendChild(li);
+      });
+    }
+    renderTodos();
+
+    todoForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = String(todoInput.value || "").trim() || "New task";
+      todos.push({ id: Date.now(), text, done:false });
+      todoInput.value = "";
+      renderTodos();
+    });
+  </script>
+</body>
+</html>
