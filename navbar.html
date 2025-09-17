@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Professional Navbar</title>
+    <title>CollabTest - Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -66,13 +66,48 @@
                 gap: 0.75rem;
             }
         }
+        /* Example hero section styles */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            background: #f4f8fb;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0052cc;
+            margin-bottom: 1rem;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+        .hero-btn {
+            background: #0052cc;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .hero-btn:hover {
+            background: #007fff;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <a href="#" class="navbar-logo">CollabTest</a>
         <div class="navbar-links">
-            <a href="#">Home</a>
+            <a href="/hero.html">Home</a>
             <a href="#">Features</a>
             <a href="#">Pricing</a>
             <a href="#">About</a>
@@ -80,5 +115,10 @@
         </div>
         <button class="navbar-action">Sign Up</button>
     </nav>
+    <section class="hero">
+        <h1 class="hero-title">Welcome to CollabTest</h1>
+        <p class="hero-subtitle">Collaborate, test, and succeed together. Your platform for seamless teamwork and project management.</p>
+        <a href="#" class="hero-btn">Get Started</a>
+    </section>
 </body>
 </html>
