@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Study Group | Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0e7ff 0%, #f4f4f9 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,45 +15,72 @@
             margin: 0;
         }
         .login-container {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            background: #fff;
+            padding: 32px 28px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(30, 64, 175, 0.12);
+            width: 340px;
         }
         .login-container h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 2rem;
         }
         .login-container input {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #c7d2fe;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f1f5f9;
+            transition: border 0.2s;
+        }
+        .login-container input:focus {
+            border: 1.5px solid #2563eb;
+            outline: none;
+            background: #fff;
         }
         .login-container button {
             width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
+            padding: 12px;
+            background-color: #2563eb;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
         }
         .login-container button:hover {
-            background-color: #0056b3;
+            background-color: #1e40af;
+        }
+        .login-container .register-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.98rem;
+        }
+        .login-container .register-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
+        <h2>Study Group Login</h2>
         <form>
-            <input type="text" placeholder="Username" required>
+            <input type="text" placeholder="Username or Email" required>
             <input type="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+        <a href="#" class="register-link">Don't have an account? Register</a>
     </div>
 </body>
 </html>
