@@ -3,62 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | Your Website</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+  <title>CollabTest - Landing Page</title>
+  <style>
+    :root{
+      --primary:#0f6bf6;
+      --secondary:#06b6a4;
+      --text:#ffffff;
+      --overlay: rgba(3, 7, 18, 0.55);
+      --max-width:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    a { text-decoration: none; color: inherit; }
+    body { background: #f8f9fa; color: #222; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(90deg, #0052cc 0%, #007fff 100%); padding: 0.75rem 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+    .navbar-logo { color: #fff; font-size: 1.5rem; font-weight: 600; letter-spacing: 1px; text-decoration: none; }
+    .navbar-links { display: flex; gap: 1.5rem; }
+    .navbar-links a { color: #fff; text-decoration: none; font-size: 1rem; font-weight: 500; transition: color 0.2s; padding: 0.5rem 0.75rem; border-radius: 4px; }
+    .navbar-links a:hover { background: rgba(255,255,255,0.12); color: #ffd700; }
+    .navbar-action { background: #ffd700; color: #0052cc; border: none; padding: 0.5rem 1.2rem; border-radius: 20px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .navbar-action:hover { background: #fffbe6; }
+    @media (max-width: 700px) { .navbar { flex-direction: column; align-items: flex-start; padding: 1rem; } .navbar-links { margin: 0.5rem 0; flex-direction: column; gap: 0.75rem; } }
+    /* Hero styles */
+    .hero { position:relative; width:100%; min-height:70vh; display:flex; align-items:center; justify-content:center; background: linear-gradient(120deg, #0f6bf6 60%, #06b6a4 100%); color: #fff; overflow:hidden; }
+    .hero__content { position:relative; z-index:2; width:100%; max-width:var(--max-width); padding:4rem 1.25rem; display:flex; gap:2rem; align-items:center; justify-content:flex-start; }
+    .hero__text { color:var(--text); max-width:720px; }
+    .hero__eyebrow { display:inline-block; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.9); padding:6px 10px; border-radius:999px; font-size:0.85rem; margin-bottom:1rem; letter-spacing:0.02em; }
+    h1{ margin:0 0 1rem 0; font-size:clamp(1.8rem, 3.5vw, 3.25rem); line-height:1.05; font-weight:700; text-shadow:0 6px 20px rgba(2,6,23,0.4); }
+    p.lead { margin:0 0 1.5rem 0; font-size:clamp(1rem, 1.4vw, 1.125rem); color:rgba(255,255,255,0.92); line-height:1.6; max-width:60ch; }
+    .hero__actions { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; gap:0.6rem; padding:0.75rem 1.25rem; border-radius:12px; font-weight:600; cursor:pointer; border:0; transition:transform 150ms ease, box-shadow 150ms ease, opacity 150ms; box-shadow:0 6px 20px rgba(2,6,23,0.35); }
+    .btn-primary { background:linear-gradient(90deg,var(--primary), var(--secondary)); color:#fff; }
+    .btn-outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.18); backdrop-filter: blur(4px); }
+    .btn:active { transform:translateY(1px) }
+    .btn:hover { transform:translateY(-4px) }
+    @media (max-width:900px){ .hero__content { padding:3rem 1rem; align-items:flex-start } }
+    @media (max-width:640px){ .hero { min-height:60vh } .hero__content { padding:2rem 1rem; flex-direction:column; align-items:flex-start } .hero__actions { width:100% } .btn { width:100% ; justify-content:center} .btn + .btn { margin-left:0 } }
+    /* Section styles */
+    .section { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; text-align: center; }
+    .section-title { font-size: 2.2rem; font-weight: 700; color: #0f6bf6; margin-bottom: 1.5rem; }
+    .section p { color: #555; line-height: 1.6; margin-bottom: 1rem; }
+    /* Footer styles (copied from footer.html) */
+    .footer { background: linear-gradient(to right, #1a2980, #26d0ce); color: white; padding: 50px 0 20px; margin-top: 40px; }
+    .footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .footer-section { padding: 0 15px; }
+    .footer-section h3 { color: #ffeb3b; margin-bottom: 20px; font-size: 1.5rem; position: relative; padding-bottom: 10px; }
+    .footer-section h3:after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 2px; background: #ffeb3b; }
+    .brand { display: flex; align-items: center; margin-bottom: 15px; }
+    .brand-icon { background: #ffeb3b; color: #1a2980; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold; font-size: 20px; }
+    .brand-text { font-size: 1.8rem; font-weight: 700; color: white; }
+    .footer-about p { line-height: 1.6; margin-bottom: 20px; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; }
+    .footer-links a:hover { color: #ffeb3b; transform: translateX(5px); }
+    .footer-contact p { display: flex; align-items: center; margin-bottom: 15px; }
+    .footer-contact i { color: #ffeb3b; margin-right: 10px; font-size: 1.2rem; min-width: 20px; }
+    .footer-newsletter p { margin-bottom: 20px; line-height: 1.6; }
+    .newsletter-form { display: flex; gap: 10px; margin-bottom: 20px; }
+    .newsletter-form input { flex: 1; padding: 12px 15px; border: none; border-radius: 4px; outline: none; }
+    .newsletter-form button { background: #ffeb3b; color: #1a2980; border: none; padding: 0 20px; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+    .newsletter-form button:hover { background: #ffc107; }
+    .footer-social { display: flex; gap: 15px; margin-top: 20px; }
+    .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; color: white; transition: all 0.3s ease; }
+    .footer-social a:hover { background: #ffeb3b; color: #1a2980; transform: translateY(-3px); }
+    .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding: 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .footer-bottom p { color: rgba(255, 255, 255, 0.7); }
+    @media (max-width: 768px) { .footer-container { grid-template-columns: 1fr; text-align: center; } .footer-section h3:after { left: 50%; transform: translateX(-50%); } .newsletter-form { flex-direction: column; } .footer-contact p { justify-content: center; } .brand { justify-content: center; } }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
+
+  <nav class="navbar">
+    <a href="#" class="navbar-logo">CollabTest</a>
+    <div class="navbar-links">
+      <a href="/home.html">Home</a>
+      <a href="/features.html">Features</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/footer.html">Footer</a>
+    </div>
+    <button class="navbar-action">Sign Up</button>
+  </nav>
+
   <!-- Hero Section -->
-  <section class="bg-blue-50 py-20 text-center">
-    <h2 class="text-4xl font-extrabold text-blue-700 mb-4">Welcome to Your Website</h2>
-    <p class="text-lg text-gray-700 mb-6">A short, catchy tagline or description goes here.</p>
-    <a href="#services" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">Get Started</a>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="max-w-5xl mx-auto py-16 px-4 text-center">
-    <h3 class="text-3xl font-bold mb-4">About Us</h3>
-    <p class="text-gray-700 leading-relaxed">
-      Write a brief description about your brand, mission, or purpose. 
-      This section helps visitors understand what you do and why they should care.
-    </p>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="bg-gray-100 py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-3xl font-bold text-center mb-10">Our Services</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Service 1</h4>
-          <p class="text-gray-600">Describe what you offer and how it helps your visitors.</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Service 2</h4>
-          <p class="text-gray-600">Highlight the key benefits of this service.</p>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Service 3</h4>
-          <p class="text-gray-600">Show why this service is valuable to your audience.</p>
+  <section class="hero" aria-label="Hero">
+    <div class="hero__content" role="presentation">
+      <div class="hero__text">
+        <span class="hero__eyebrow">Welcome to CollabTest</span>
+        <h1>Build, Connect, and Grow with Modern Web Solutions</h1>
+        <p class="lead">
+          Hands-on projects, expert mentorship, and a vibrant community to help you launch your digital journey. Join us and start building professional web apps today.
+        </p>
+        <div class="hero__actions">
+          <a href="#services" class="btn btn-primary" role="button">Explore Our Services</a>
+          <a href="#contact" class="btn btn-outline" role="button">Contact Us</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2 class="section-title">About Us</h2>
+    <p>
+      CollabTest is dedicated to empowering individuals and businesses with cutting-edge web development solutions. Our mission is to deliver beautiful, functional, and scalable digital products that drive success.
+    </p>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section" style="background:#f0f4fa;">
+    <h2 class="section-title">Our Services</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+      <div style="background:#fff;padding:2rem 1.5rem;border-radius:1.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.07);min-width:220px;max-width:320px;flex:1 1 220px;">
+        <h3 style="color:#0f6bf6;">Digital Solutions</h3>
+        <p>We design and build scalable digital platforms that connect people and services.</p>
+      </div>
+      <div style="background:#fff;padding:2rem 1.5rem;border-radius:1.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.07);min-width:220px;max-width:320px;flex:1 1 220px;">
+        <h3 style="color:#06b6a4;">Mobile Apps</h3>
+        <p>Our team creates intuitive and user-friendly mobile applications for iOS and Android.</p>
+      </div>
+      <div style="background:#fff;padding:2rem 1.5rem;border-radius:1.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.07);min-width:220px;max-width:320px;flex:1 1 220px;">
+        <h3 style="color:#a259ec;">Community Services</h3>
+        <p>Empowering local communities with digital tools and support systems for growth.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
-  <section id="contact" class="max-w-5xl mx-auto py-16 px-4 text-center">
-    <h3 class="text-3xl font-bold mb-6">Contact Us</h3>
-    <form class="max-w-md mx-auto space-y-4">
-      <input type="text" placeholder="Your Name" class="w-full border rounded-lg p-3" required>
-      <input type="email" placeholder="Your Email" class="w-full border rounded-lg p-3" required>
-      <textarea placeholder="Your Message" class="w-full border rounded-lg p-3" rows="4" required></textarea>
-      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Send</button>
+  <section id="contact" class="section">
+    <h2 class="section-title">Contact Us</h2>
+    <form style="max-width:400px;margin:2rem auto 0;display:flex;flex-direction:column;gap:1rem;">
+      <input type="text" placeholder="Your Name" required style="padding:12px;border-radius:8px;border:1px solid #ccc;">
+      <input type="email" placeholder="Your Email" required style="padding:12px;border-radius:8px;border:1px solid #ccc;">
+      <textarea placeholder="Your Message" rows="4" required style="padding:12px;border-radius:8px;border:1px solid #ccc;"></textarea>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Send</button>
     </form>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-6 text-center">
-    <p>&copy; 2025 Your Website. All rights reserved.</p>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section footer-about">
+        <div class="brand">
+          <span class="brand-icon"><i class="fas fa-code"></i></span>
+          <span class="brand-text">CollabTest</span>
+        </div>
+        <p>We are a leading web development company dedicated to creating stunning, functional websites and applications that help businesses thrive in the digital world.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-section footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/home.html">Home</a></li>
+          <li><a href="/features.html">Features</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section footer-contact">
+        <h3>Contact Info</h3>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Web Street, Digital City</p>
+        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@webdev.com</p>
+        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 5PM</p>
+      </div>
+      <div class="footer-section footer-newsletter">
+        <h3>Newsletter</h3>
+        <p>Subscribe to our newsletter for the latest updates, offers, and web development tips.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 CollabTest. All Rights Reserved. | Designed by Engineer Amir <i class="fas fa-heart" style="color: #ffeb3b;"></i></p>
+    </div>
   </footer>
 
 </body>
