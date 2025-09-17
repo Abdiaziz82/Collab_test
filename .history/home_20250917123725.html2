@@ -234,7 +234,7 @@
         });
 
         const text = document.createElement("span");
-        text.style.marginLeft = "10px";
+        text.style.marginLeft = "8px";
         text.style.textDecoration = t.done ? "line-through" : "none";
         text.style.color = t.done ? "#6b7280" : "#111827";
         text.textContent = t.text;
